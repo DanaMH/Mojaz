@@ -1,4 +1,3 @@
-# highlighting.py
 import re
 
 def normalize_sentence(sentence):
@@ -16,14 +15,13 @@ def highlight_text(text, matched_sentences, color):
         normalized_sentence = sentence.strip().rstrip('.').rstrip()
         if not normalized_sentence:
             continue  # لو الجملة فاضية يتجاهلها
-        # استخدم regex للبحث عن الجملة بالضبط ككلمة مستقلة
+        
         pattern = re.escape(normalized_sentence)
-        # حط mark حول أول تطابق فقط
         highlighted, count = re.subn(
             pattern,
             f'<mark style="background-color: {color};">{normalized_sentence}</mark>',
             highlighted,
             count=1,  # فقط أول ظهور
-            flags=re.IGNORECASE  # تجاهل الفرق بين الحروف الكبيرة والصغيرة لو تبي
+            flags=re.IGNORECASE  
         )
     return highlighted
